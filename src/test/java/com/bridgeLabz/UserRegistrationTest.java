@@ -17,16 +17,28 @@ public class UserRegistrationTest {
         UserRegistration userRegistration = new UserRegistration();
         Assertions.assertFalse(userRegistration.validFirstName("sms"));
     }
+
+    @Test
+    public void testValidLastName(){
+        UserRegistration userRegistration = new UserRegistration();
+        Assertions.assertTrue(userRegistration.validLastName("Maurya"));
+    }
+
+    @Test
+    public void testInvalidLastName(){
+        UserRegistration userRegistration = new UserRegistration();
+        Assertions.assertFalse(userRegistration.validLastName("mry"));
+    }
+
     @ParameterizedTest
     @CsvSource({
-            "Sumesh, true",
-            "sms, false",
-            "Rakesh, true"
+            "Maurya, true",
+            "mry, false",
+            "Kushwaha, true"
     })
-    public void testInvalidFirstName(String firstName,boolean expected){
+    public void testValidationOfLastName(String lastName,boolean expected){
         UserRegistration userRegistration = new UserRegistration();
-        //Assertions.assertFalse(userRegistration.validFirstName("sume@"));
-        boolean result = userRegistration.validFirstName(firstName);
+        boolean result = userRegistration.validLastName(lastName);
         Assertions.assertEquals(expected,result);
     }
 }
