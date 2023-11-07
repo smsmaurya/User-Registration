@@ -41,4 +41,10 @@ public class UserRegistrationTest {
         boolean result = userRegistration.validLastName(lastName);
         Assertions.assertEquals(expected,result);
     }
+
+    @Test
+    public void testValidEmailID(){
+        UserRegistration userRegistration = new UserRegistration();
+        Assertions.assertTrue(userRegistration.validEmailID("abc100@yahoo.com"));
+    }
 }
