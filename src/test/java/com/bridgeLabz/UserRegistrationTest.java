@@ -1,32 +1,41 @@
 package com.bridgeLabz;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class UserRegistrationTest {
+
+    UserRegistration userRegistration;
+
+    @BeforeEach
+    public void setUp(){
+        userRegistration = new UserRegistration();
+
+    }
+
+
+    // test cases for FIRST_NAME
     @Test
-    public void testValidFirstName(){
-        UserRegistration userRegistration = new UserRegistration();
-        Assertions.assertTrue(userRegistration.validFirstName("Sumesh"));
+    public void testValidFirstName() {
+        Assertions.assertEquals(true, userRegistration.validFirstName("Sumesh"));
     }
 
     @Test
-    public void testInvalidFirstName(){
-        UserRegistration userRegistration = new UserRegistration();
+    public void testInvalidFirstName()  {
         Assertions.assertFalse(userRegistration.validFirstName("sms"));
     }
 
+    // test cases for LAST_NAME
     @Test
     public void testValidLastName(){
-        UserRegistration userRegistration = new UserRegistration();
         Assertions.assertTrue(userRegistration.validLastName("Maurya"));
     }
 
     @Test
     public void testInvalidLastName(){
-        UserRegistration userRegistration = new UserRegistration();
         Assertions.assertFalse(userRegistration.validLastName("mry"));
     }
 
@@ -37,14 +46,31 @@ public class UserRegistrationTest {
             "Kushwaha, true"
     })
     public void testValidationOfLastName(String lastName,boolean expected){
-        UserRegistration userRegistration = new UserRegistration();
         boolean result = userRegistration.validLastName(lastName);
         Assertions.assertEquals(expected,result);
     }
 
+    // Test cases for MAIL-ID
     @Test
     public void testValidEmailID(){
-        UserRegistration userRegistration = new UserRegistration();
         Assertions.assertTrue(userRegistration.validEmailID("abc100@yahoo.com"));
     }
+
+    @Test
+    public void testInvalidEmailID(){
+        Assertions.assertFalse(userRegistration.validEmailID("abcyahoo.com"));
+    }
+
+    // test cases for MOBILE_NUMBER
+    @Test
+    public void testValidMobileNumberFormat(){
+        Assertions.assertTrue(userRegistration.validMobileNumberFormat("91 9918558132"));
+    }
+
+    @Test
+    public void testInvalidMobileNumberFormat(){
+        Assertions.assertFalse(userRegistration.validMobileNumberFormat("919918558132"));
+
+    }
+
 }
