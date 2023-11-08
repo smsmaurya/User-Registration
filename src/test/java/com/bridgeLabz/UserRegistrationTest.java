@@ -64,13 +64,24 @@ public class UserRegistrationTest {
     // test cases for MOBILE_NUMBER
     @Test
     public void testValidMobileNumberFormat(){
-        Assertions.assertTrue(userRegistration.validMobileNumberFormat("91 9918558132"));
+        Assertions.assertTrue(userRegistration.validMobileNumberFormat("91 991858132"));
     }
 
     @Test
     public void testInvalidMobileNumberFormat(){
         Assertions.assertFalse(userRegistration.validMobileNumberFormat("919918558132"));
 
+    }
+
+    // test cases for password Rule 1 - password should have min 8 characters
+    @Test
+    public void testThePasswordShouldHave8Characters(){
+        Assertions.assertTrue(userRegistration.passwordShouldHave8Characters("mry152#A"));
+    }
+
+    @Test
+    public void testThePasswordShouldNotHave8Characters(){
+        Assertions.assertFalse(userRegistration.passwordShouldHave8Characters("mry@12#"));
     }
 
 }
