@@ -8,7 +8,7 @@ public class UserRegistration {
     private static final String LAST_NAME_PATTERN = "^[A-Z][a-z]{2,}$";
     private static final String EMAIL_ID ="[a-z A-Z 0-9 _/-/.]+[@][a-z]+[/.][a-z]{2,3}";
     private static final String MOBILE_NUMBER ="^[9]+[1]+\\s\\d{10}$";
-    private static final String PASSWORD ="[A-Z a-z 0-9 ([!@#$%&])]{8,}";
+    private static final String PASSWORD ="^(?=.*[A-Z])[A-Za-z\\d!@#$%&]{8,}$";//(?=.*[a-z])(?=.*\d)(?=.*[!@#$%&])
 
     public boolean validFirstName(String firstName)  {
 
@@ -76,7 +76,7 @@ public class UserRegistration {
         return false;
     }
 
-    public boolean passwordShouldHave8Characters(String password){
+    public boolean checkPassword(String password){
         Pattern p = Pattern.compile(PASSWORD);
         Matcher m = p.matcher(password);
         try {
@@ -84,11 +84,29 @@ public class UserRegistration {
                 return true;
             }
             else {
-                throw new UserRegistrationException("password should have at least 8 characters");
+                throw new UserRegistrationException("invalid password");
             }
         } catch (UserRegistrationException u) {
             System.out.println(u.getMessage());
         }
         return false;
     }
+
+/*
+    public boolean passwordShouldHaveMin1UpperCase(String password) {
+        Pattern p = Pattern.compile("^(?=.*[A-Z])[A-Za-z\\d!@#$%&]{8,}$");
+        Matcher m = p.matcher(password);
+        try {
+            if(m.matches()){
+                return true;
+            }
+            else {
+                throw new UserRegistrationException("password should have at least 1 Upper case character");
+            }
+        } catch (UserRegistrationException u) {
+            System.out.println(u.getMessage());
+        }
+        return false;
+    }
+*/
 }
