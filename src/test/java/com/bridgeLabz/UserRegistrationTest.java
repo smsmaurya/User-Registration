@@ -87,7 +87,7 @@ public class UserRegistrationTest {
     // test cases for password Rule 2 - password should have at least 1 Capital character
     @Test
     public void testThePasswordShouldHaveMin1UpperCase(){
-        Assertions.assertTrue(userRegistration.checkPassword("ssssSer345ef"));
+        Assertions.assertTrue(userRegistration.checkPassword("AsssS@345ef"));
     }
 
     @Test
